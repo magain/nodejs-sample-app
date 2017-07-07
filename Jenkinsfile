@@ -1,4 +1,4 @@
-node('testing') {
+node {
   stage('Init') {
     echo 'Initializing ...'
   }
