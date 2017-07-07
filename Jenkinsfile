@@ -18,7 +18,7 @@ pipeline {
     stage('nodejs test') {
       steps {
         echo 'test nodejs via command npm --version'
-        nodejs(nodeJSInstallationName: 'nodejs') {
+        nodejs(nodeJSInstallationName: 'nodejs', configId: '') {
           sh 'npm --version'
         }
       }
