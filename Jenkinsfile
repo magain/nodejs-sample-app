@@ -6,4 +6,7 @@ node {
     echo 'Getting source code ...'
     checkout scm
   }
+  stage('nodejs test') {
+    sh 'npm --version'
+  }
 }
