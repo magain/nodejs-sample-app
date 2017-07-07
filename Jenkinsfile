@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools {
-    nodejs 'Node 8.x'
+    nodejs 'NodeJS 8.x'
   }
   stages {
     stage('Init') {
