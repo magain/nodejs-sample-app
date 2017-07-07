@@ -1,13 +1,24 @@
-node {
-  stage('Init') {
-    echo 'Initializing ...'
+pipeline {
+  agent any
+  tools {
+    nodejs 'Node 8.x'
   }
-  stage('Checkout') {
-    echo 'Getting source code ...'
-    checkout scm
-  }
-  stage('nodejs test') {
-    echo 'test nodejs via command npm --version'
-    sh 'npm --version'
-  }
+  stages {
+    stage('Init') {
+      steps {
+        echo 'Initializing ...'
+        }
+      }
+    stage('Checkout') {
+      steps {
+        echo 'Getting source code ...'
+        checkout scm
+      }
+    }
+    stage('nodejs test') {
+      steps {
+        echo 'test nodejs via command npm --version'
+        sh 'npm --version'
+      }
+    }
 }
