@@ -7,8 +7,8 @@ pipeline {
     stage('Init') {
       steps {
         echo 'Initializing ...'
-        }
       }
+    }
     stage('Checkout') {
       steps {
         echo 'Getting source code ...'
@@ -21,4 +21,5 @@ pipeline {
         sh 'npm --version'
       }
     }
+  }
 }
