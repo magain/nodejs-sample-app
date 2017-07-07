@@ -7,6 +7,7 @@ node {
     checkout scm
   }
   stage('nodejs test') {
+    echo 'test nodejs via command npm --version'
     sh 'npm --version'
   }
 }
