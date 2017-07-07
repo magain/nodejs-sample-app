@@ -23,7 +23,7 @@ pipeline {
 //        }
 //      }
 //    }
-    stage('Test')
+    stage('Test') {
       steps {
         def myTestContainer = docker.image('node:4.6')
         myTestContainer.pull()
