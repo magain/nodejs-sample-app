@@ -18,8 +18,9 @@ pipeline {
     stage('nodejs test') {
       steps {
         echo 'test nodejs via command npm --version'
-        nodejs(nodeJSInstallationName: 'NodeJS 8.1.3')
-        sh 'npm --version'
+        nodejs(nodeJSInstallationName: 'nodejs') {
+          sh 'npm --version'
+        }
       }
     }
 //      steps {
