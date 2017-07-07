@@ -1,14 +1,10 @@
-pipeline {
-  agent any
-  tools {
-    nodejs 'node 8'
+node('testing') {
+  stage('Init') {
+    echo "Initializing ..."
   }
-  stages {
-    stage('Preparation') {
-      steps {
-        checkout scm
-      }
-    }
+  stage('Checkout') {
+    checkout scm
+  }
 /**
   *  stage('test') {
   *    steps {
@@ -26,5 +22,4 @@ pipeline {
   *    }
   *  }
   **/
-  }
 }
