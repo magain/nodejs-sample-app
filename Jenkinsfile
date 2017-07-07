@@ -27,7 +27,7 @@ pipeline {
       steps {
         echo 'Create node container, install npm and execute tests'
         script {
-          def myTestContainer = docker.image('node:4.6')
+          def myTestContainer = docker.image('node:8.1')
           myTestContainer.pull()
           myTestContainer.inside {
             sh 'npm install --only=dev'
