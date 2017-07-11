@@ -1,41 +1,19 @@
-pipeline {
-  agent any
-//  tools {
-//    nodejs 'NodeJS 8.1.3'
-//  }
-
-  stages {
-    stage('Init') {
-      steps {
-        echo 'Initializing ...'
-      }
-    }
-    stage('Checkout') {
-      steps {
-        echo 'Getting source code ...'
-        checkout scm
-      }
-    }
-//    stage('nodejs test') {
-//      steps {
-//        echo 'test nodejs via command npm --version'
-//        nodejs(nodeJSInstallationName: 'nodejs', configId: '') {
-//          sh 'npm --version'
-//        }
-//      }
-//    }
-    stage('Test') {
-      steps {
-        echo 'Create node container, install npm and execute tests'
-        script {
-          def myTestContainer = docker.image('node:8.1')
-          myTestContainer.pull()
-          myTestContainer.inside {
-            sh 'npm install --only=dev'
-            sh 'npm test'
-          }
-        }
-      }
-    }
-  }
+node {
+   def commit_id
+   stage('Preparation') {
+     checkout scm
+     sh "git rev-parse --short HEAD > .git/commit-id"
+     commit_id = readFile('.git/commit-id').trim()
+   }
+   stage('test') {
+     nodejs(nodeJSInstallationName: 'nodejs') {
+       sh 'npm install --only=dev'
+       sh 'npm test'
+     }
+   }
+//   stage('docker build/push') {
+//     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+//       def app = docker.build("wardviaene/docker-nodejs-demo:${commit_id}", '.').push()
+//     }
+//   }
 }
