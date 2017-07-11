@@ -8,7 +8,7 @@ node ("docker") {
    stage('test') {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside (-u 1001:1001) {
+     myTestContainer.inside ("--volume=/var/run/docker.sock:/var/run/docker.sock") {
        sh 'npm install --only=dev'
        sh 'npm test'
      }
