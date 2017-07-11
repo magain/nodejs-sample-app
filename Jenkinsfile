@@ -8,7 +8,7 @@ node {
    stage('test') {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside {
+     myTestContainer.inside('-u node') {
        sh 'npm install --only=dev'
        sh 'npm test'
      }
@@ -27,5 +27,5 @@ node {
 //     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
 //       def app = docker.build("wardviaene/docker-nodejs-demo:${commit_id}", '.').push()
 //     }
-//   }                                      
+//   }
 }
