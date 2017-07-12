@@ -3,7 +3,6 @@ pipeline {
 //  tools {
 //    nodejs 'NodeJS 8.1.3'
 //  }
-
   stages {
     stage('Init') {
       steps {
